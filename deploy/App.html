@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Son of PreferencesJumpstart</title>
+
+    <script type="text/javascript" src="/apps/2.0rc1/sdk.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function () {
+                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",preferenceModel:null,getPreferencesBySubstring:function(substring,callback,scope){Rally.data.PreferenceManager.load({additionalFilters:[{property:"Name",operator:"contains",value:substring}],scope:scope,success:callback})},savePreferenceData:function(data,callback,scope){Rally.data.PreferenceManager.update({settings:data,scope:scope,success:callback,filterByUser:!0})},launch:function(){this.savePreferenceData({MySuperPref:!0,MySuperPref2:9},function(){this.getPreferencesBySubstring("MySuperPref",function(preferences){console.log(preferences)})},this)}});
+
+            Rally.launchApp('CustomApp', {
+                name:"Son of PreferencesJumpstart",
+	            parentRepos:"ferentchak/PreferencesJumpstart"
+            });
+
+        });
+    </script>
+
+
+    <style type="text/css">
+        .app {
+     /* Add app styles here */
+}
+
+    </style>
+</head>
+<body></body>
+</html>
